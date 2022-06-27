@@ -7,8 +7,12 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.dicoding.courseschedule.R
 import com.dicoding.courseschedule.data.Course
+import com.dicoding.courseschedule.ui.list.ListActivity
+import com.dicoding.courseschedule.ui.list.ListViewModel
+import com.dicoding.courseschedule.ui.list.ListViewModelFactory
 import com.dicoding.courseschedule.ui.setting.SettingsActivity
 import com.dicoding.courseschedule.util.DayName
 import com.dicoding.courseschedule.util.QueryType
@@ -20,12 +24,20 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var viewModel: HomeViewModel
     private var queryType = QueryType.CURRENT_DAY
 
-    //TODO 5 : Show today schedule in CardHomeView and implement menu action
+    //TODO 5 : Show today schedule in CardHomeView and implement menu action [SOLVED]
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         supportActionBar?.title = resources.getString(R.string.today_schedule)
 
+        val factory = HomeViewModelFactory.createFactory(this)
+        viewModel = ViewModelProvider(this,factory).get(HomeViewModel::class.java)
+
+        showTodaySchedule(if (viewModel.getTodaySchedule().isEmpty()){
+            null
+        }else{
+            viewModel.getTodaySchedule()[0]
+        })
     }
 
     private fun showTodaySchedule(course: Course?) {
@@ -35,8 +47,13 @@ class HomeActivity : AppCompatActivity() {
             val time = String.format(getString(R.string.time_format), dayName, startTime, endTime)
             val remainingTime = timeDifference(day, startTime)
 
-            val cardHome = findViewById<CardHomeView>(R.id.view_home)
-
+            findViewById<CardHomeView>(R.id.view_home).apply {
+                setCourseName("courseName")
+                setTime(time)
+                setRemainingTime(remainingTime)
+                setLecturer(lecturer)
+                setNote(note)
+            }
         }
 
         findViewById<TextView>(R.id.tv_empty_home).visibility =
@@ -64,6 +81,8 @@ class HomeActivity : AppCompatActivity() {
         val intent: Intent = when (item.itemId) {
 
             R.id.action_settings -> Intent(this, SettingsActivity::class.java)
+            R.id.action_list -> Intent(this, ListActivity::class.java)
+            R.id.action_add -> throw IllegalAccessException("Coming soon")
             else -> null
         } ?: return super.onOptionsItemSelected(item)
 

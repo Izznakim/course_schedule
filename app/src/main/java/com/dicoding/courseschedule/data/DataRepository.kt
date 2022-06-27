@@ -1,6 +1,7 @@
 package com.dicoding.courseschedule.data
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
@@ -11,6 +12,7 @@ import com.dicoding.courseschedule.util.QueryUtil.sortedQuery
 import com.dicoding.courseschedule.util.SortType
 import com.dicoding.courseschedule.util.executeThread
 import java.time.LocalDate
+import kotlin.math.log
 
 //TODO 4 : Implement repository with appropriate dao [SOLVED]
 class DataRepository(private val dao: CourseDao) {
@@ -33,6 +35,7 @@ class DataRepository(private val dao: CourseDao) {
     fun getTodaySchedule(): List<Course> {
         val now=LocalDate.now()
         val today=now.dayOfWeek
+        Log.d("DataRepository", "getTodaySchedule: ${dao.getTodaySchedule(today.value)}")
         return dao.getTodaySchedule(today.value)
     }
 

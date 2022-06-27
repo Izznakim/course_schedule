@@ -18,9 +18,10 @@ abstract class CourseDatabase : RoomDatabase() {
 
         @JvmStatic
         fun getInstance(context: Context): CourseDatabase {
-            return synchronized(this){
+            return synchronized(this) {
                 instance ?: Room.databaseBuilder(context, CourseDatabase::class.java, "courses.db")
-                        .build()
+                    .allowMainThreadQueries()
+                    .build()
             }
         }
 
