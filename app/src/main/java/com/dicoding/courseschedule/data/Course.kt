@@ -3,7 +3,7 @@ package com.dicoding.courseschedule.data
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-//TODO 1 : Define a local database table using the schema in app/schema/course.json
+//TODO 1 : Define a local database table using the schema in app/schema/course.json [SOLVED]
 @Entity(tableName = "course")
 data class Course(
     @PrimaryKey(autoGenerate = true)

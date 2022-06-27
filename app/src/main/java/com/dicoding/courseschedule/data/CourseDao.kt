@@ -5,7 +5,7 @@ import androidx.paging.DataSource
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteQuery
 
-//TODO 2 : Define data access object (DAO)
+//TODO 2 : Define data access object (DAO) [SOLVED]
 @Dao
 interface CourseDao {
     @RawQuery(observedEntities = [Course::class])
@@ -26,5 +26,6 @@ interface CourseDao {
     @Delete
     fun delete(course: Course)
 
+    @RawQuery(observedEntities = [Course::class])
     fun sort(params: String): DataSource.Factory<Int, Course>
 }

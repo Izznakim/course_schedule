@@ -5,7 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-//TODO 3 : Define room database class
+//TODO 3 : Define room database class [SOLVED]
+@Database(entities = [Course::class], version = 1)
 abstract class CourseDatabase : RoomDatabase() {
 
     abstract fun courseDao(): CourseDao
@@ -15,6 +16,7 @@ abstract class CourseDatabase : RoomDatabase() {
         @Volatile
         private var instance: CourseDatabase? = null
 
+        @JvmStatic
         fun getInstance(context: Context): CourseDatabase {
             return synchronized(this){
                 instance ?: Room.databaseBuilder(context, CourseDatabase::class.java, "courses.db")
