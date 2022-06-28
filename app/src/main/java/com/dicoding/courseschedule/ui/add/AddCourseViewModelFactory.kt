@@ -1,16 +1,18 @@
-package com.dicoding.courseschedule.ui.detail
+package com.dicoding.courseschedule.ui.add
 
 import android.app.Activity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.courseschedule.data.DataRepository
+import com.dicoding.courseschedule.ui.detail.DetailViewModelFactory
+import com.dicoding.courseschedule.ui.home.HomeViewModelFactory
 import java.lang.reflect.InvocationTargetException
 
-class DetailViewModelFactory(private val repository: DataRepository?, private val id: Int): ViewModelProvider.Factory {
+class AddCourseViewModelFactory(private val repository: DataRepository?): ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         try {
-            return modelClass.getConstructor(DataRepository::class.java, Int::class.java).newInstance(repository, id)
+            return modelClass.getConstructor(DataRepository::class.java).newInstance(repository)
         } catch (e: InstantiationException) {
             throw RuntimeException("Cannot create an instance of $modelClass", e)
         } catch (e: IllegalAccessException) {
@@ -23,11 +25,11 @@ class DetailViewModelFactory(private val repository: DataRepository?, private va
     }
 
     companion object {
-        fun createFactory(activity: Activity, id: Int): DetailViewModelFactory {
+        fun createFactory(activity: Activity): AddCourseViewModelFactory {
             val context = activity.applicationContext
                 ?: throw IllegalStateException("Not yet attached to Application")
 
-            return DetailViewModelFactory(DataRepository.getInstance(context), id)
+            return AddCourseViewModelFactory(DataRepository.getInstance(context))
         }
     }
 }

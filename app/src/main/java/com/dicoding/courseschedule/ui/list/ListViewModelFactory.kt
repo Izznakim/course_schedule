@@ -8,7 +8,7 @@ import java.lang.reflect.InvocationTargetException
 
 class ListViewModelFactory(private val repository: DataRepository?): ViewModelProvider.Factory {
 
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         try {
             return modelClass.getConstructor(DataRepository::class.java).newInstance(repository)
         } catch (e: InstantiationException) {

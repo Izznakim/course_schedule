@@ -1,6 +1,7 @@
 package com.dicoding.courseschedule.util
 
 import android.text.format.DateUtils
+import java.text.SimpleDateFormat
 import java.util.*
 
 fun timeDifference(day: Int, targetTime: String): String {
@@ -34,4 +35,10 @@ fun timeDifference(day: Int, targetTime: String): String {
     }
 
     return "($remainingTime)"
+}
+
+fun String.timeFormatter(): String? {
+    val parser = SimpleDateFormat("H:m")
+    val formatter = SimpleDateFormat("HH:mm")
+    return parser.parse(this)?.let { formatter.format(it) }
 }

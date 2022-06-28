@@ -3,8 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Dari_Local_disk_E/Android_Dev/7-Tes_Simulasi_AAD/CourseScheduleApp/app/src/main/res/layout/activity_add_course.xml" value="0.33" />
+        <entry key="..\:/Dari_Local_disk_E/Android_Dev/7-Tes_Simulasi_AAD/CourseScheduleApp/app/src/main/res/layout/activity_detail.xml" value="0.17074275362318841" />
         <entry key="..\:/Dari_Local_disk_E/Android_Dev/7-Tes_Simulasi_AAD/CourseScheduleApp/app/src/main/res/layout/activity_home.xml" value="0.14175724637681159" />
+        <entry key="..\:/Dari_Local_disk_E/Android_Dev/7-Tes_Simulasi_AAD/CourseScheduleApp/app/src/main/res/layout/activity_list.xml" value="0.1" />
         <entry key="..\:/Dari_Local_disk_E/Android_Dev/7-Tes_Simulasi_AAD/CourseScheduleApp/app/src/main/res/layout/item_course.xml" value="0.22447916666666667" />
+        <entry key="..\:/Dari_Local_disk_E/Android_Dev/7-Tes_Simulasi_AAD/CourseScheduleApp/app/src/main/res/menu/menu_add.xml" value="0.22447916666666667" />
+        <entry key="..\:/Dari_Local_disk_E/Android_Dev/7-Tes_Simulasi_AAD/CourseScheduleApp/app/src/main/res/menu/menu_detail.xml" value="0.22447916666666667" />
+        <entry key="..\:/Dari_Local_disk_E/Android_Dev/7-Tes_Simulasi_AAD/CourseScheduleApp/app/src/main/res/menu/menu_home.xml" value="0.22447916666666667" />
       </map>
     </option>
   </component>

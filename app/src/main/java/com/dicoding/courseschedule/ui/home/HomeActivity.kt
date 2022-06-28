@@ -2,6 +2,7 @@ package com.dicoding.courseschedule.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.courseschedule.R
 import com.dicoding.courseschedule.data.Course
+import com.dicoding.courseschedule.ui.add.AddCourseActivity
 import com.dicoding.courseschedule.ui.list.ListActivity
 import com.dicoding.courseschedule.ui.list.ListViewModel
 import com.dicoding.courseschedule.ui.list.ListViewModelFactory
@@ -17,6 +19,7 @@ import com.dicoding.courseschedule.ui.setting.SettingsActivity
 import com.dicoding.courseschedule.util.DayName
 import com.dicoding.courseschedule.util.QueryType
 import com.dicoding.courseschedule.util.timeDifference
+import java.time.LocalDate
 
 //TODO 15 : Write UI test to validate when user tap Add Course (+) Menu, the AddCourseActivity is displayed
 class HomeActivity : AppCompatActivity() {
@@ -48,7 +51,7 @@ class HomeActivity : AppCompatActivity() {
             val remainingTime = timeDifference(day, startTime)
 
             findViewById<CardHomeView>(R.id.view_home).apply {
-                setCourseName("courseName")
+                setCourseName(courseName)
                 setTime(time)
                 setRemainingTime(remainingTime)
                 setLecturer(lecturer)
@@ -82,7 +85,7 @@ class HomeActivity : AppCompatActivity() {
 
             R.id.action_settings -> Intent(this, SettingsActivity::class.java)
             R.id.action_list -> Intent(this, ListActivity::class.java)
-            R.id.action_add -> throw IllegalAccessException("Coming soon")
+            R.id.action_add -> Intent(this, AddCourseActivity::class.java)
             else -> null
         } ?: return super.onOptionsItemSelected(item)
 
