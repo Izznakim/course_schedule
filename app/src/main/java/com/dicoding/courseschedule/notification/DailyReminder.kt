@@ -32,14 +32,14 @@ class DailyReminder : BroadcastReceiver() {
         }
     }
 
-    //TODO 12 : Implement daily reminder for every 06.00 a.m using AlarmManager
+    //TODO 12 : Implement daily reminder for every 06.00 a.m using AlarmManager [SOLVED]
     fun setDailyReminder(context: Context) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, DailyReminder::class.java)
 
         val calendar = Calendar.getInstance()
-        calendar.set(Calendar.HOUR_OF_DAY, 10)
-        calendar.set(Calendar.MINUTE, 30)
+        calendar.set(Calendar.HOUR_OF_DAY, 6)
+        calendar.set(Calendar.MINUTE, 0)
         calendar.set(Calendar.SECOND, 0)
 
         val pendingIntent =
@@ -47,11 +47,11 @@ class DailyReminder : BroadcastReceiver() {
         alarmManager.setInexactRepeating(
             AlarmManager.RTC_WAKEUP,
             calendar.timeInMillis,
-            AlarmManager.INTERVAL_FIFTEEN_MINUTES,
+            AlarmManager.INTERVAL_DAY,
             pendingIntent
         )
 
-        Toast.makeText(context, "Daily reminder is active", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Daily reminder ACTIVATED", Toast.LENGTH_SHORT).show()
     }
 
     fun cancelAlarm(context: Context) {
@@ -63,7 +63,7 @@ class DailyReminder : BroadcastReceiver() {
 
         alarmManager.cancel(pendingIntent)
 
-        Toast.makeText(context, "Daily reminder is nonactive", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Daily reminder DISABLED", Toast.LENGTH_SHORT).show()
     }
 
     private fun showNotification(context: Context, content: List<Course>) {

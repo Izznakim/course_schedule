@@ -19,9 +19,6 @@ class SettingsFragment : PreferenceFragmentCompat(),
     private lateinit var themePreference: ListPreference
     private lateinit var notificationPreference: SwitchPreference
 
-    private val AKTIF="AKTIF"
-    private val NONAKTIF="NONAKTIF"
-
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
         //TODO 10 : Update theme based on value in ListPreference [SOLVED]
@@ -62,10 +59,8 @@ class SettingsFragment : PreferenceFragmentCompat(),
         if (key == NOTIFICATION) {
             val dailyReminder=DailyReminder()
             if (notificationPreference.isChecked){
-                Log.d("SettingsFragment", "onSharedPreferenceChanged: ${notificationPreference.switchTextOn}")
                 dailyReminder.setDailyReminder(requireContext())
             }else{
-                Log.d("SettingsFragment", "onSharedPreferenceChanged: ${notificationPreference.switchTextOff}")
                 dailyReminder.cancelAlarm(requireContext())
             }
         }
