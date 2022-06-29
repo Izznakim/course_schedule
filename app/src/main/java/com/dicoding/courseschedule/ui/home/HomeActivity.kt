@@ -21,7 +21,7 @@ import com.dicoding.courseschedule.util.QueryType
 import com.dicoding.courseschedule.util.timeDifference
 import java.time.LocalDate
 
-//TODO 15 : Write UI test to validate when user tap Add Course (+) Menu, the AddCourseActivity is displayed
+//TODO 15 : Write UI test to validate when user tap Add Course (+) Menu, the AddCourseActivity is displayed [SOLVED]
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var viewModel: HomeViewModel
